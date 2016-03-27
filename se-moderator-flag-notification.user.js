@@ -50,7 +50,7 @@ if (window.location.href.indexOf('/desktop-notifications') === -1) {
         if (reviewItems.length > 0) {
             reviewCount = parseInt(reviewItems.html());
             if (reviewCount > 0) {
-                //notifications.push(reviewCount + ' Review Items');
+                notifications.push(reviewCount + ' Review Items');
             }
         }
 
