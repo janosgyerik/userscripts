@@ -13,12 +13,12 @@
 // ==/UserScript==
 
 if (window.location.href.indexOf('/help/badges') !== -1) {
-    var hideEarnedLink = $('<a>(hide earned)</a>');
+    var hideEarnedLink = $('<a>hide earned</a>');
 
     hideEarnedLink.click(function() {
         $('.badge-earned-check').parents('.badge-row').remove();
         $('.badge-hierarchy').filter(function() { return $(this).text().trim().length == 0; }).hide();
     });
 
-    $('#h-badges').append(hideEarnedLink);
+    $('#h-badges').append(' (').append(hideEarnedLink).append(')');
 }
