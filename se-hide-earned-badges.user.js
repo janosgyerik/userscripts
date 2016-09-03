@@ -17,7 +17,7 @@ var hideEarnedLink = $('<a>hide earned</a>');
 hideEarnedLink.click(function() {
     $('.badge-earned-check').parents('.badge-row').remove();
     $('.badge-hierarchy').filter(function() {
-        return $(this).text().trim().length == 0;
+        return $(this).text().trim().length === 0;
     }).hide();
 });
 
