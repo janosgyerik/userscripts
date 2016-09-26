@@ -13,6 +13,7 @@
 // @match *://*.askubuntu.com/review*
 // @match *://*.stackapps.com/review*
 // @match *://*.mathoverflow.net/review*
+// @require http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // ==/UserScript==
 
 if (window.location.href.indexOf('/desktop-notifications') === -1) {
