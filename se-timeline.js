@@ -17,24 +17,27 @@
 (function() {
   'use strict';
 
-  $('.post-menu .short-link').each((_, shortLink) => {
-    // Example short links:
-    // https://stackoverflow.com/q/47462904/641955
-    // https://stackoverflow.com/a/47463378/641955
-    //
-    var lastSlash = shortLink.href.lastIndexOf('/');
-    var secondLastSlash = shortLink.href.lastIndexOf('/', lastSlash - 1);
-    var postId = shortLink.href.substring(secondLastSlash + 1, lastSlash);
-    var $timelineLink = $('<a>timeline</a>')
+  let addTimelineLink = function($shortLink, postId) {
+    let $timelineLink = $('<a>timeline</a>')
       .addClass("timeline")
-      .css({ color: 'purple' })
-      .attr('href', '/posts/' + postId + '/timeline');
+      .attr('href', `/posts/${postId}/timeline`);
 
-    var $shortLink = $(shortLink);
-    var $separator = $shortLink.next();
+    let $separator = $shortLink.next();
 
     $shortLink.parent()
       .append($separator)
       .append($timelineLink);
+  };
+
+  $('#question').each((_, question) => {
+    let $shortLink = $(question).find('.short-link');
+    let postId = question.dataset.questionid;
+    addTimelineLink($shortLink, postId);
+  });
+
+  $('.answer').each((_, answer) => {
+    let $shortLink = $(answer).find('.short-link');
+    let postId = answer.dataset.answerid;
+    addTimelineLink($shortLink, postId);
   });
 })();
