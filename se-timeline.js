@@ -17,27 +17,27 @@
 (function() {
   'use strict';
 
-  let addTimelineLink = function($shortLink, postId) {
-    let $timelineLink = $('<a>timeline</a>')
+  let addTimelineLink = function(shortLink, postId) {
+    let timelineLink = $('<a>timeline</a>')
       .addClass("timeline")
       .attr('href', `/posts/${postId}/timeline`);
 
-    let $separator = $shortLink.next();
+    let separator = shortLink.next();
 
-    $shortLink.parent()
-      .append($separator)
-      .append($timelineLink);
+    shortLink.parent()
+      .append(separator)
+      .append(timelineLink);
   };
 
   $('#question').each((_, question) => {
-    let $shortLink = $(question).find('.short-link');
+    let shortLink = $(question).find('.short-link');
     let postId = question.dataset.questionid;
-    addTimelineLink($shortLink, postId);
+    addTimelineLink(shortLink, postId);
   });
 
   $('.answer').each((_, answer) => {
-    let $shortLink = $(answer).find('.short-link');
+    let shortLink = $(answer).find('.short-link');
     let postId = answer.dataset.answerid;
-    addTimelineLink($shortLink, postId);
+    addTimelineLink(shortLink, postId);
   });
 })();
