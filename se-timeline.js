@@ -17,11 +17,12 @@
 (function() {
   'use strict';
 
-  let addTimelineLink = function(shortLink, postId) {
+  let addTimelineLink = function(post, postId) {
     let timelineLink = $('<a>timeline</a>')
       .addClass("timeline")
       .attr('href', `/posts/${postId}/timeline`);
 
+    let shortLink = $(post).find('.short-link');
     let separator = shortLink.next();
 
     shortLink.parent()
@@ -30,14 +31,10 @@
   };
 
   $('#question').each((_, question) => {
-    let shortLink = $(question).find('.short-link');
-    let postId = question.dataset.questionid;
-    addTimelineLink(shortLink, postId);
+    addTimelineLink(question, question.dataset.questionid);
   });
 
   $('.answer').each((_, answer) => {
-    let shortLink = $(answer).find('.short-link');
-    let postId = answer.dataset.answerid;
-    addTimelineLink(shortLink, postId);
+    addTimelineLink(answer, answer.dataset.answerid);
   });
 })();
