@@ -29,9 +29,10 @@ if (window.location.href.indexOf('/desktop-notifications') === -1) {
     var timeDiff = Math.abs(lastTime - currentTime);
     setTimeout(function(){ window.location.reload(); }, DELAY);
 
-    $('.subheader h1').html('Desktop Notifications');
-    $('.leftcol').html('Keep your browser open on this page and it will be automatically reloaded and alert you when something wants your attention.').removeClass('leftcol');
-    $('.rightcol').remove();
+    var content = $('#mainbar-full');
+    content.empty();
+    content.append('<h1>Desktop Notifications</h1>');
+    content.append('<p>Keep your browser open on this page and it will be automatically reloaded and alert you when something wants your attention.</p>');
 
     var title = document.title.split(' - '); // keep the site name
     document.title = 'Desktop Notifications - ' + title[1];
@@ -40,19 +41,9 @@ if (window.location.href.indexOf('/desktop-notifications') === -1) {
     if (timeDiff <= DELAY * 2) {
         var notifications = [];
 
-        var topbarFlag = $('.top-bar .indicator-badge').html();
-        var topbarFlagCount = parseInt(topbarFlag);
-        if (topbarFlagCount > 0) {
-            notifications.push(topbarFlagCount + ' Flags');
-        }
-
-        var reviewItems = $('.icon-tools-flag span');
-        var reviewCount = 0;
-        if (reviewItems.length > 0) {
-            reviewCount = parseInt(reviewItems.html());
-            if (reviewCount > 0) {
-                notifications.push(reviewCount + ' Review Items');
-            }
+        var flagCount = parseInt($('nav.secondary-nav a').eq(1).text());
+        if (!isNaN(flagCount)) {
+            notifications.push(flagCount + ' Flags');
         }
 
         if (notifications.length > 0) {
